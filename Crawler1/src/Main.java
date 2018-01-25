@@ -14,7 +14,6 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.HashMap;
-import java.util.Map;
 import java.awt.event.ActionEvent;
 
 public class Main extends JFrame {
@@ -46,12 +45,21 @@ public class Main extends JFrame {
 	 */
 	public Main() {
 		
-		//map을 초기화합니다.
+		//map을 초기화합니다. 일 중 영 칠 싱 미 아르헨 호주 오스트리아
+		nation.put("Japan", "jp");
 		nation.put("USA", "us"); 
 		nation.put("UK", "gb");
+		nation.put("Chile", "cl");
+		nation.put("Singapore", "sg");
+		nation.put("Hongkong", "hk");
 		nation.put("Argentina", "ar");
 		nation.put("Austrailia", "au");
 		nation.put("Austria", "at");
+		nation.put("VietNam", "vn");
+		nation.put("Malaysia", "my");
+		nation.put("India", "in");
+		
+		
 		
 		setTitle("iTunes Charts Crawler");
 		setResizable(false);
@@ -83,9 +91,6 @@ public class Main extends JFrame {
 		brouseBtn.setFont(new Font("Apple LiGothic", Font.PLAIN, 13));
 		brouseBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// 여기에 action 정의
-				// textField.setText("옦꼐이 클릭됐음");
-
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int returnVal = chooser.showOpenDialog(brouseBtn);
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -109,12 +114,13 @@ public class Main extends JFrame {
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
+		
 		JButton saveBtn = new JButton("Save");
 		saveBtn.setForeground(new Color(0, 0, 0));
 		saveBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Crawler cr = new Crawler();
-			//	cr.exportToExcel(cr.getFilePath(path.toString()), cr.crawlChart(""));
+				cr.makeExcel(nation, path.toString());
 			}
 		});
 		saveBtn.setFont(new Font("Apple LiGothic", Font.PLAIN, 13));
